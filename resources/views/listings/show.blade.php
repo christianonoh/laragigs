@@ -1,6 +1,4 @@
-@extends('layout')
-
-@section('content')
+<x-layout>
   @include('partials._searchbar')
 
   <a href="/" class="mb-4 ml-4 inline-block text-black"><i class="fa-solid fa-arrow-left"></i> Back
@@ -40,4 +38,4 @@
     </x-card>
   </div>
   </div>
-@endsection
+</x-layout>

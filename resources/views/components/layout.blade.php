@@ -27,9 +27,7 @@
     </ul>
   </nav>
 
-  <!-- Search -->
-
-  @yield('content')
+  {{ $slot }}
   <footer
     class="fixed bottom-0 left-0 mt-24 flex h-24 w-full items-center justify-start bg-laravel font-bold text-white opacity-90 md:justify-center">
     <p class="ml-2">Copyright &copy; 2022, All Rights reserved</p>
