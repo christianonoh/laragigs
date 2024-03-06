@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ListingsController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Listing;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ListingsController::class, 'index']);
+
+Route::get("/listings/{listing}", [ListingsController::class, 'show'])->where('id', '[0-9-]+');
