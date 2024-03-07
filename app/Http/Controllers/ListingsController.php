@@ -52,6 +52,6 @@ class ListingsController extends Controller
     Listing::create($formFields);
 
     // Redirect to the homepage
-    return redirect('/');
+    return redirect('/')->with('message', 'Your listing has been created successfully.');
   }
 }

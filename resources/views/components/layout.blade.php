@@ -34,6 +34,7 @@
 
     <a href="/listings/create" class="absolute right-10 top-1/3 bg-black px-5 py-2 text-white">Post Job</a>
   </footer>
+  <x-flash-message />
 </body>
 
 </html>
