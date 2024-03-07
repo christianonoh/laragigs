@@ -7,7 +7,7 @@
   @include('partials._searchbar')
 
   <main>
-    @if (count($listings) == 0)
+    @if (count($listings) < 1)
       :
       <p> There are no listings available. </p>
     @else
