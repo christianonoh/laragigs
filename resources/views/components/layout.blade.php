@@ -32,7 +32,7 @@
     class="fixed bottom-0 left-0 mt-24 flex h-24 w-full items-center justify-start bg-laravel font-bold text-white opacity-90 md:justify-center">
     <p class="ml-2">Copyright &copy; 2022, All Rights reserved</p>
 
-    <a href="create.html" class="absolute right-10 top-1/3 bg-black px-5 py-2 text-white">Post Job</a>
+    <a href="/listings/create" class="absolute right-10 top-1/3 bg-black px-5 py-2 text-white">Post Job</a>
   </footer>
 </body>
 
