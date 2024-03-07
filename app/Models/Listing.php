@@ -7,18 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Listing extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    public function scopeFilter($query, array $filters)
-    {
-        // $query->when($filters['search'] ?? false, function ($query, $search) {
-        //     $query
-        //         ->where('title', 'like', '%' . $search . '%')
-        //         ->orWhere('description', 'like', '%' . $search . '%');
-        // });
-      if($filters['tag'] ?? false) 
-      {
-        $query->where('tags', 'like', '%' . request('tag') . '%');
-      }
+  public function scopeFilter($query, array $filters)
+  {
+    // $query->when($filters['search'] ?? false, function ($query, $search) {
+    //     $query
+    //         ->where('title', 'like', '%' . $search . '%')
+    //         ->orWhere('description', 'like', '%' . $search . '%');
+    // });
+    if ($filters['tag'] ?? false) {
+      $query->where('tags', 'like', '%' . request('tag') . '%');
     }
+    if ($filters['search'] ?? false) {
+      $query->where('title', 'like', '%' . request('search') . '%')
+        ->orWhere('description', 'like', '%' . request('search') . '%')
+        ->orWhere('location', 'like', '%' . request('search') . '%')
+        ->orWhere('tags', 'like', '%' . request('search') . '%');
+    }
+  }
 }
