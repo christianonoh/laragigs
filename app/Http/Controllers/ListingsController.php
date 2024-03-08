@@ -33,25 +33,31 @@ class ListingsController extends Controller
     return view('listings.create');
   }
 
-  // Store a new listing
-  public function store(Request $request)
-  {
-    // @dd('Hi');
-    // Validate the form
-    $formFields = $request->validate([
-      'title' => 'required',
-      'tags' => 'required',
-      'company' => ['required', ValidationRule::unique('listings', 'company')],
-      'location' => 'required',
-      'email' => ['required', 'email'],
-      'website' => 'required',
-      'description' => 'required'
-    ]);
+    // Store a new listing
+    public function store(Request $request)
+    {
+      // @dd($request->file('logo')->store());
+      // Validate the form
+      $formFields = $request->validate([
+        'title' => 'required',
+        'tags' => 'required',
+        'company' => ['required', ValidationRule::unique('listings', 'company')],
+        'location' => 'required',
+        'email' => ['required', 'email'],
+        'website' => 'required',
+        'description' => 'required'
+      ]);
 
-    // Create a new listing
-    Listing::create($formFields);
+      // Store the logo
+      if ($request->hasFile('logo')) {
+        $logoPath = $request->file('logo')->store('logos', 'public'); // Specify the disk and path for storing the logo
+        $formFields['logo'] = $logoPath;
+      }
 
-    // Redirect to the homepage
-    return redirect('/')->with('message', 'Your listing has been created successfully.');
+      // Create a new listing
+      Listing::create($formFields);
+
+      // Redirect to the homepage
+      return redirect('/')->with('message', 'Your listing has been created successfully.');
+    }
   }
-}
