@@ -8,7 +8,6 @@
 
   <main>
     @if (count($listings) < 1)
-      :
       <p> There are no listings available. </p>
     @else
       <div class="mx-4 grid gap-4 lg:grid-cols-2">
@@ -18,4 +17,7 @@
       </div>
     @endif
   </main>
+  <div class="mt-8 p-4">
+    {{ $listings->links() }}
+  </div>
 </x-layout>
