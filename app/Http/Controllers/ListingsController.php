@@ -51,8 +51,10 @@ class ListingsController extends Controller
     if ($request->hasFile('logo')) {
       $logoPath = $request->file('logo')->store('logos', 'public'); // Specify the disk and path for storing the logo
       $formFields['logo'] = $logoPath;
-      // dd($logoPath);
     }
+
+    // Add user id to listing
+    $formFields['user_id'] = auth()->id();
 
     // Create a new listing
     Listing::create($formFields);
