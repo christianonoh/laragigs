@@ -37,6 +37,21 @@
           </div>
         </div>
     </x-card>
+    <x-card class="mt-8">
+      <div class="flex justify-between">
+        <a href="/listings/{{ $listing->id }}/edit" class="rounded bg-laravel px-4 py-2 text-white hover:bg-black">
+          Edit Gig
+        </a>
+
+        <form action="/listings/{{ $listing->id }}" method="POST">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600">
+            Delete Gig
+          </button>
+        </form>
+      </div>
+    </x-card>
   </div>
   </div>
 </x-layout>

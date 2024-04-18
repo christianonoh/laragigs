@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
 
@@ -15,10 +16,38 @@ use App\Models\Listing;
 |
 */
 
+// Show all listings
 Route::get('/', [ListingsController::class, 'index']);
 
-Route::get('/listings/create', [ListingsController::class, 'create']);
+// Create Listing
+Route::get('/listings/create', [ListingsController::class, 'create'])->middleware('auth');
 
-Route::post('/listings', [ListingsController::class, 'store']);
+// Edit Listing
+Route::get('/listings/{listing}/edit', [ListingsController::class, 'edit'])->middleware('auth');
 
+// Update Listing
+Route::put('/listings/{listing}', [ListingsController::class, 'update'])->middleware('auth');
+
+// Delete Listing
+Route::delete('/listings/{listing}', [ListingsController::class, 'delete'])->middleware('auth');
+
+// Store Listing
+Route::post('/listings', [ListingsController::class, 'store'])->middleware('auth');
+
+// Show a single listing
 Route::get("/listings/{listing}", [ListingsController::class, 'show'])->where('id', '[0-9-]+');
+
+// Show registration form
+Route::get("/register", [UserController::class, 'create'])->middleware('guest');
+
+// Store user
+Route::post("/register", [UserController::class, 'store'])->middleware('guest');
+
+// Show Login Form
+Route::get("/login", [UserController::class, 'login'])->name('login')->middleware('guest');
+
+// Login User
+Route::post("/users/authenticate", [UserController::class, 'authenticate'])->middleware('guest');
+
+// Log User Out
+Route::post("/logout", [UserController::class, 'logout'])->middleware('auth');
