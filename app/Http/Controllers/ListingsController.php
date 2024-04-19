@@ -107,4 +107,12 @@ class ListingsController extends Controller
     // Redirect to the homepage
     return redirect('/')->with('message', 'Your listing has been deleted successfully.');
   }
+
+  // Manage Listings
+  public function manage()
+  {
+    return view('listings.manage', [
+      'listings' => auth()->user()->listings
+    ]);
+  }
 }

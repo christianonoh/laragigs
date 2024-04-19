@@ -37,6 +37,9 @@ Route::post('/listings', [ListingsController::class, 'store'])->middleware('auth
 // Show a single listing
 Route::get("/listings/{listing}", [ListingsController::class, 'show'])->where('id', '[0-9-]+');
 
+// Manage Listings
+Route::get("/manage-listings", [ListingsController::class, 'manage'])->middleware('auth');
+
 // Show registration form
 Route::get("/register", [UserController::class, 'create'])->middleware('guest');
 

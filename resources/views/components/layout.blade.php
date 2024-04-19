@@ -23,11 +23,15 @@
           Welcome {{ auth()->user()->name }}!
         </li>
         <li>
+          <a href="/manage-listings">
+            <i class="fa-solid fa-gear"></i> Manage Listings</a>
+        </li>
+        <li>
           <form action="/logout" method="POST">
             @csrf
             <button type="submit" class="hover:text-laravel"><i class="fa-solid fa-sign-out"></i> Logout</button>
           </form>
-      @else
+        @else
         <li>
           <a href="/register" class="hover:text-laravel"><i class="fa-solid fa-user-plus"></i> Register</a>
         </li>
